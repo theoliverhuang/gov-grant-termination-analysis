@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Government Grant Termination Analysis</title>
+<title>data-extraction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,16 +57,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/quarto.js"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="index_files/libs/quarto-html/anchor.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="data-extraction_files/libs/clipboard/clipboard.min.js"></script>
+<script src="data-extraction_files/libs/quarto-html/quarto.js"></script>
+<script src="data-extraction_files/libs/quarto-html/popper.min.js"></script>
+<script src="data-extraction_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="data-extraction_files/libs/quarto-html/anchor.min.js"></script>
+<link href="data-extraction_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="data-extraction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="data-extraction_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="data-extraction_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="data-extraction_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Government Grant Termination Analysis</h1>
+<h1 class="title">data-extraction</h1>
 </div>
 
 
@@ -112,9 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lgbtq_grant_term <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/lgbtq_grant_terminations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nih_terminations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/nih_terminations_airtable.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 538 Columns: 33
+<pre><code>Rows: 820 Columns: 33
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
 chr  (31): full_award_number, cancellation_source, activity_code, abstract_t...
@@ -123,7 +123,33 @@ date  (2): termination_date, reinstated_est_date
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lgbtq_grant_term</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nih_terminations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 820 × 33
+   full_award_number termination_date cancellation_source   activity_code
+   &lt;chr&gt;             &lt;date&gt;           &lt;chr&gt;                 &lt;chr&gt;        
+ 1 C06OD034040-01    2025-03-21       HHS reported          C06          
+ 2 C06OD034042-01    2025-03-21       HHS reported          C06          
+ 3 C06OD030152-01    2025-03-12       HHS reported          C06          
+ 4 D43TW012274-03    2025-03-21       Self and HHS reported D43          
+ 5 D43TW012189-04    2025-03-14       HHS reported          D43          
+ 6 D43TW011324-05    2025-03-21       HHS reported          D43          
+ 7 DP2AI164315-04    2025-02-28       HHS reported          DP2          
+ 8 DP2MH132941-01    2025-03-14       HHS reported          DP2          
+ 9 DP2DA058436-01    2025-03-14       Self and HHS reported DP2          
+10 DP2MH136495-01S1  2025-04-30       Self reported         DP2          
+# ℹ 810 more rows
+# ℹ 29 more variables: abstract_text &lt;chr&gt;, usa_total_award &lt;chr&gt;,
+#   usa_total_outlays &lt;chr&gt;, usa_remaining &lt;chr&gt;, reinstated_indicator &lt;chr&gt;,
+#   reinstated_est_date &lt;date&gt;, us_rep &lt;chr&gt;, us_rep_phone &lt;chr&gt;, terms &lt;chr&gt;,
+#   spending_categories &lt;chr&gt;, project_title &lt;chr&gt;, program_office &lt;chr&gt;,
+#   phr_text &lt;chr&gt;, pct_ugrad_pellgrant &lt;chr&gt;, pct_ugrad_fedloan &lt;chr&gt;,
+#   org_type &lt;chr&gt;, org_traits &lt;chr&gt;, org_state &lt;chr&gt;, org_name &lt;chr&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lgbtq_grant_terminations <span class="ot">&lt;-</span> nih_terminations <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(flagged_words, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">regex</span>(<span class="st">"gender-identity|gender identity|gender affirming care|lgbtq|lgbt|men who have sex with men|msm|nonbinary|non-binary|sexuality|trans|transgender"</span>, <span class="at">ignore_case =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>lgbtq_grant_terminations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 538 × 33
    full_award_number termination_date cancellation_source   activity_code
@@ -147,10 +173,9 @@ date  (2): termination_date, reinstated_est_date
 #   org_type &lt;chr&gt;, org_traits &lt;chr&gt;, org_state &lt;chr&gt;, org_name &lt;chr&gt;, …</code></pre>
 </div>
 </div>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>We took in data from grant-watch.us. Data read in was on Monday, May 19.</p>
-</section>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(lgbtq_grant_terminations, <span class="st">"data/lgbtq_grant_terminations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 </main>
 <!-- /main column -->

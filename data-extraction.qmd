@@ -3,3 +3,23 @@ title: "data-extraction"
 format: html
 ---
 
+```{r}
+#| label: library
+library(tidyverse)
+```
+
+```{r}
+#| label: data-extraction
+nih_terminations <- read_csv("data/nih_terminations_airtable.csv")
+nih_terminations
+lgbtq_grant_terminations <- nih_terminations |> 
+  filter(str_detect(flagged_words, 
+                    regex("gender-identity|gender identity|gender affirming care|lgbtq|lgbt|men who have sex with men|msm|nonbinary|non-binary|sexuality|trans|transgender", ignore_case = TRUE)))
+lgbtq_grant_terminations
+```
+
+```{r}
+#| label: write-data-csv
+write_csv(lgbtq_grant_terminations, "data/lgbtq_grant_terminations")
+```
+

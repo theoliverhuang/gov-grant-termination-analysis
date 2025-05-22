@@ -2,21 +2,47 @@
 title: "Government Grant Termination Analysis"
 format: html
 editor: visual
+execute: 
+  echo: false
 ---
 
 ```{r}
 #| label: library
+#| output: false
 library(tidyverse)
 ```
 
 ```{r}
 #| label: read-data
+#| output: false
 lgbtq_grant_term <- read_csv("data/lgbtq_grant_terminations")
-lgbtq_grant_term
+lgbtq_grant_term <- lgbtq_grant_term |> 
+  mutate(org_type = as_factor(org_name),
+         usa_total_award =  as.numeric(str_remove(usa_total_award, "\\$")),
+         usa_total_outlays = as.numeric(str_remove(usa_total_outlays, "\\$")),
+         usa_remaining = as.numeric(str_remove(usa_remaining, "\\$"))
+         )
 ```
 
 
 ## Methods
 
 We took in data from grant-watch.us. Data read in was on Monday, May 19.
+
+## Insitutional Information
+
+```{r}
+#| label: institution-information
+lgbtq_grant_term
+lgbtq_grant_term |> 
+  group_by(org_type) |> 
+  summarize(award_sum = sum(usa_total_award)) |> 
+  arrange(desc(award_sum)) |> 
+  head(n = 10) |> 
+  ggplot(aes(y = org_type, x = award_sum)) +
+    geom_col(width = .9) +
+    scale_y_discrete(labels = function(y) str_wrap(y, width = 22)) + 
+    labs() +
+    theme_minimal()
+```
 
